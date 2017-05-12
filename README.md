@@ -9,6 +9,7 @@ to deploy it locally, run:
 
 
 mvn clean install
+
 mvn jetty:run
 
 
