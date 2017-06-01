@@ -111,7 +111,7 @@
 		Static issuer service, returns the same issuer for every request.
 	-->
 	<bean class="org.mitre.openid.connect.client.service.impl.StaticSingleIssuerService" id="staticIssuerService">
-		<property name="issuer" value="http://kubernetes-node1.nj.trantect.com" />
+		<property name="issuer" value="https://accounts-test.cloudtrust.com.cn" />
 	</bean>	
 
 
@@ -127,13 +127,13 @@
 	<bean class="org.mitre.openid.connect.client.service.impl.StaticServerConfigurationService" id="staticServerConfigurationService">
 		<property name="servers">
 			<map>
-				<entry key="http://kubernetes-node1.nj.trantect.com">
+				<entry key="https://accounts-test.cloudtrust.com.cn">
 					<bean class="org.mitre.openid.connect.config.ServerConfiguration">
-						<property name="issuer" value="http://kubernetes-node1.nj.trantect.com" />
-						<property name="authorizationEndpointUri"	value="http://kubernetes-node1.nj.trantect.com/auth" />
-						<property name="tokenEndpointUri"	value="http://kubernetes-node1.nj.trantect.com/token" />
-						<property name="userInfoUri" value="http://kubernetes-node1.nj.trantect.com/me" />
-						<property name="jwksUri" value="http://kubernetes-node1.nj.trantect.com/certs" />
+						<property name="issuer" value="https://accounts-test.cloudtrust.com.cn" />
+						<property name="authorizationEndpointUri"	value="https://accounts-test.cloudtrust.com.cn/auth" />
+						<property name="tokenEndpointUri"	value="https://accounts-test.cloudtrust.com.cn/token" />
+						<property name="userInfoUri" value="https://accounts-test.cloudtrust.com.cn/me" />
+						<property name="jwksUri" value="https://accounts-test.cloudtrust.com.cn/certs" />
 					</bean>
 				</entry>
 			</map>
@@ -155,7 +155,7 @@
 	<bean class="org.mitre.openid.connect.client.service.impl.StaticClientConfigurationService" id="staticClientConfigurationService">
 		<property name="clients">
 			<map>
-				<entry key="http://kubernetes-node1.nj.trantect.com">
+				<entry key="https://accounts-test.cloudtrust.com.cn">
 					<bean class="org.mitre.oauth2.model.RegisteredClient">
 						<property name="clientId" value="client-basic" />
 						<property name="clientSecret" value="secret" />
