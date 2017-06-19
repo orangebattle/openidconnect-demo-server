@@ -111,7 +111,7 @@
 		Static issuer service, returns the same issuer for every request.
 	-->
 	<bean class="org.mitre.openid.connect.client.service.impl.StaticSingleIssuerService" id="staticIssuerService">
-		<property name="issuer" value="http://localhost:3000" />
+		<property name="issuer" value="http://localhost:9001" />
 	</bean>	
 
 
@@ -127,13 +127,13 @@
 	<bean class="org.mitre.openid.connect.client.service.impl.StaticServerConfigurationService" id="staticServerConfigurationService">
 		<property name="servers">
 			<map>
-				<entry key="http://localhost:3000">
+				<entry key="http://localhost:9001">
 					<bean class="org.mitre.openid.connect.config.ServerConfiguration">
-						<property name="issuer" value="http://localhost:3000" />
-						<property name="authorizationEndpointUri"	value="http://localhost:3000/auth" />
-						<property name="tokenEndpointUri"	value="http://localhost:3000/token" />
-						<property name="userInfoUri" value="http://localhost:3000/me" />
-						<property name="jwksUri" value="http://localhost:3000/certs" />
+						<property name="issuer" value="http://localhost:9001" />
+						<property name="authorizationEndpointUri"	value="http://localhost:9001/auth" />
+						<property name="tokenEndpointUri"	value="http://localhost:9001/token" />
+						<property name="userInfoUri" value="http://localhost:9001/me" />
+						<property name="jwksUri" value="http://localhost:9001/certs" />
 					</bean>
 				</entry>
 			</map>
@@ -155,7 +155,7 @@
 	<bean class="org.mitre.openid.connect.client.service.impl.StaticClientConfigurationService" id="staticClientConfigurationService">
 		<property name="clients">
 			<map>
-				<entry key="http://localhost:3000">
+				<entry key="http://localhost:9001">
 					<bean class="org.mitre.oauth2.model.RegisteredClient">
 						<property name="clientId" value="client-basic" />
 						<property name="clientSecret" value="secret" />
