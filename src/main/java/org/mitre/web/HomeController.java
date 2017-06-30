@@ -24,10 +24,12 @@ import javax.annotation.Resource;
 
 import org.mitre.openid.connect.client.OIDCAuthenticationFilter;
 import org.mitre.openid.connect.client.SubjectIssuerGrantedAuthority;
+import org.mitre.openid.connect.model.OIDCAuthenticationToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,7 +81,6 @@ public class HomeController {
 	@RequestMapping("/admin")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String admin(Model model, Principal p) {
-
 		model.addAttribute("admins", admins);
 
 		return "admin";
@@ -90,4 +91,15 @@ public class HomeController {
 		return "login";
 	}
 
+
+	@RequestMapping("/logout")
+	@PreAuthorize("hasRole('ROLE_USER')")
+	public String logout(Principal p) {
+
+		OIDCAuthenticationToken token = (OIDCAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+
+		String idtoken = token.getIdToken().serialize();
+
+		return "redirect:https://accounts-test.cloudtrust.com.cn/session/end?id_token_hint="+idtoken+"&post_logout_redirect_uri=http://localhost:8080/j_spring_security_logout";
+	}
 }

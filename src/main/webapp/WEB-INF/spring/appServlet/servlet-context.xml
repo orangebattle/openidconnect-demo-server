@@ -48,7 +48,7 @@
 
 		<security:custom-filter before="PRE_AUTH_FILTER" ref="openIdConnectAuthenticationFilter" />
 
-		<security:logout />
+		<security:logout logout-url="/j_spring_security_logout"  delete-cookies="JSESSIONID,myRememberMe" />
 
 	</security:http>
 

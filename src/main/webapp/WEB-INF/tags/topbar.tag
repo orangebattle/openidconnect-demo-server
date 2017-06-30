@@ -61,14 +61,16 @@
 								<li><a href="admin">Admin</a></li>
 							</c:otherwise>
 						</c:choose>
+						<security:authorize access="hasRole('ROLE_USER')">
 						<c:choose>
 							<c:when test="${pageName == 'Logout'}">
 								<li class="active"><a href="#">Logout</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="j_spring_security_logout">Logout</a></li>
+								<li><a href="logout">Logout</a></li>
 							</c:otherwise>
 						</c:choose>
+						</security:authorize>
 	
 					</ul>
 					<ul class="nav pull-right">
@@ -78,7 +80,7 @@
 							<ul class="dropdown-menu pull-right">
 								<li><a href="user" data-toggle="collapse" data-target=".nav-collapse">${ longName }</a></li>
 								<li class="divider"></li>
-								<li><a href="j_spring_security_logout" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-remove"></i> Log out</a></li>
+								<li><a href="logout" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-remove"></i> Log out</a></li>
 							</ul>
 						</li>
 	                    </security:authorize>
