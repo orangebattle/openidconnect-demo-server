@@ -32,7 +32,7 @@
 					<li><a href="admin">Admin</a>, requires the user to be logged in with the <code>ROLE_ADMIN</code> Spring Security authority. 
 					    See below for the currently configured list of admin accounts.</li>
 					<security:authorize access="hasRole('ROLE_USER')">
-						<li><a href="j_spring_security_logout">Logout</a>, log out directly and return to this page.</li>
+						<li><a href="logout">Logout</a>, log out directly and return to this page.</li>
 					</security:authorize>
 					<security:authorize access="!hasRole('ROLE_USER')">
 						<li><a href="login">Log in</a>, log in directly and return to this page.</li>
