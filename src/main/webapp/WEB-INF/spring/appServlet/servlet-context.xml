@@ -69,15 +69,9 @@
 	</bean>
 
 	<util:set id="namedAdmins" value-type="org.mitre.openid.connect.client.SubjectIssuerGrantedAuthority">
-		<!--
-			This is an example of how to set up a user as an administrator: they'll be given ROLE_ADMIN in addition to ROLE_USER.
-			Note that having an administrator role on the IdP doesn't grant administrator access on this client.
-
-			These are values from the demo "openid-connect-server-webapp" project of MITREid Connect.
-		-->
 		<!--<bean class="org.mitre.openid.connect.client.SubjectIssuerGrantedAuthority">-->
-			<!--<constructor-arg name="subject" value="90342.ASDFJWFA" />-->
-			<!--<constructor-arg name="issuer" value="http://localhost:8080/openid-connect-server-webapp/" />-->
+			<!--<constructor-arg name="subject" value="5qk30csf9pv1hjmduex42onzwiygtr86" />-->
+			<!--<constructor-arg name="issuer" value="https://accounts-test.cloudtrust.com.cn/" />-->
 		<!--</bean>-->
 	</util:set>
 

@@ -29,13 +29,13 @@
 			
 				<ul>
 					<li><a href="user">User</a>, requires the user to be logged in with the <code>ROLE_USER</code> Spring Security authority.</li>
-					<li><a href="admin">Admin</a>, requires the user to be logged in with the <code>ROLE_ADMIN</code> Spring Security authority. 
-					    See below for the currently configured list of admin accounts.</li>
+					<!--<li><a href="admin">Admin</a>, requires the user to be logged in with the <code>ROLE_ADMIN</code> Spring Security authority.
+					    See below for the currently configured list of admin accounts.</li> -->
 					<security:authorize access="hasRole('ROLE_USER')">
 						<li><a href="logout">Logout</a>, log out directly and return to this page.</li>
 					</security:authorize>
 					<security:authorize access="!hasRole('ROLE_USER')">
-						<li><a href="login">Log in</a>, log in directly and return to this page.</li>
+						<li><a href="openid_connect_login">Log in</a>, log in directly and return to this page.</li>
 					</security:authorize>
 				</ul>
 			
@@ -56,12 +56,12 @@
 				</ul>
 			</div>
 			
-			<div>
+			<!-- <div>
 				<h3>Administrators</h3>
-				
+
 				<p>Logged in users are assigned the <code>ROLE_USER</code> authority by default, but the following users
 				 (identified by issuer/subject pairs) will also be given <code>ROLE_ADMIN</code>:</p>
-				
+
 				<table class="table table-striped table-hover span4">
 					<tr>
 						<th>Issuer</th>
@@ -74,7 +74,7 @@
 						</tr>
 					</c:forEach>
 				</table>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>

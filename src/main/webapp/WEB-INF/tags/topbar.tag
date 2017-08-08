@@ -53,14 +53,14 @@
 								<li><a href="user">User</a></li>
 							</c:otherwise>
 						</c:choose>
-						<c:choose>
+						<!--<c:choose>
 							<c:when test="${pageName == 'Admin'}">
 								<li class="active"><a href="#">Admin</a></li>
 							</c:when>
 							<c:otherwise>
 								<li><a href="admin">Admin</a></li>
 							</c:otherwise>
-						</c:choose>
+						</c:choose> -->
 						<security:authorize access="hasRole('ROLE_USER')">
 						<c:choose>
 							<c:when test="${pageName == 'Logout'}">
@@ -86,7 +86,7 @@
 	                    </security:authorize>
 	                    <security:authorize access="!hasRole('ROLE_USER')">
 	                    <li>
-	                    	<a id="loginButton" href="login" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-lock icon-white"></i> Log in</a>
+	                    	<a id="loginButton" href="openid_connect_login" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-lock icon-white"></i> Log in</a>
 	                    </li>
 	                    </security:authorize>
 	                </ul>

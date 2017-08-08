@@ -18,12 +18,8 @@ package org.mitre.web;
 
 import java.security.Principal;
 import java.util.Locale;
-import java.util.Set;
-
-import javax.annotation.Resource;
 
 import org.mitre.openid.connect.client.OIDCAuthenticationFilter;
-import org.mitre.openid.connect.client.SubjectIssuerGrantedAuthority;
 import org.mitre.openid.connect.model.OIDCAuthenticationToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,9 +43,6 @@ public class HomeController {
 	@Autowired
 	private OIDCAuthenticationFilter filter;
 	
-	@Resource(name = "namedAdmins")
-	private Set<SubjectIssuerGrantedAuthority> admins;
-	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -61,8 +54,6 @@ public class HomeController {
 		model.addAttribute("clientConfigurationServiceClass", filter.getClientConfigurationService().getClass().getSimpleName());
 		model.addAttribute("authRequestOptionsServiceClass", filter.getAuthRequestOptionsService().getClass().getSimpleName());
 		model.addAttribute("authRequestUriBuilderClass", filter.getAuthRequestUrlBuilder().getClass().getSimpleName());
-		
-		model.addAttribute("admins", admins);
 
 		return "home";
 	}
@@ -71,24 +62,6 @@ public class HomeController {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	public String user(Principal p) {
 		return "user";
-	}
-
-	@RequestMapping("/open")
-	public String open(Principal p) {
-		return "open";
-	}
-
-	@RequestMapping("/admin")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String admin(Model model, Principal p) {
-		model.addAttribute("admins", admins);
-
-		return "admin";
-	}
-
-	@RequestMapping("/login")
-	public String login(Principal p) {
-		return "login";
 	}
 
 
