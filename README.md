@@ -5,7 +5,6 @@ Simple web application that demonstrates the use of the OpenID Connect client co
 
 clone and modified from https://github.com/mitreid-connect/simple-web-app
 
-to connect our test server, git checkout branch test-server-open-id-provider
 
 __enviroment requirement:__
 
