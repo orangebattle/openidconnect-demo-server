@@ -48,7 +48,7 @@
 
 		<security:custom-filter before="PRE_AUTH_FILTER" ref="openIdConnectAuthenticationFilter" />
 
-		<security:logout logout-url="/j_spring_security_logout"  delete-cookies="JSESSIONID,myRememberMe" />
+		<security:logout logout-url="/j_spring_security_logout"  delete-cookies="JSESSIONID" />
 
 	</security:http>
 
@@ -128,6 +128,7 @@
 						<property name="tokenEndpointUri"	value="https://accounts-test.cloudtrust.com.cn/token" />
 						<property name="userInfoUri" value="https://accounts-test.cloudtrust.com.cn/me" />
 						<property name="jwksUri" value="https://accounts-test.cloudtrust.com.cn/certs" />
+						<property name="endSessionEndpoint" value="https://accounts-test.cloudtrust.com.cn/session/end" />
 					</bean>
 				</entry>
 			</map>
@@ -166,6 +167,11 @@
 						<property name="redirectUris">
 							<set>
 								<value>http://localhost:8080/simple-web-app/openid_connect_login</value>
+							</set>
+						</property>
+						<property name="postLogoutRedirectUris">
+							<set>
+								<value>http://localhost:8080/j_spring_security_logout</value>
 							</set>
 						</property>
 					</bean>

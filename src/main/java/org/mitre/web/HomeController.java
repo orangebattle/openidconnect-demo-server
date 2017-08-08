@@ -17,8 +17,12 @@
 package org.mitre.web;
 
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.Locale;
+import java.util.Set;
 
+import com.nimbusds.jwt.JWT;
+import com.nimbusds.jwt.JWTParser;
 import org.mitre.openid.connect.client.OIDCAuthenticationFilter;
 import org.mitre.openid.connect.model.OIDCAuthenticationToken;
 import org.slf4j.Logger;
@@ -71,8 +75,45 @@ public class HomeController {
 
 		OIDCAuthenticationToken token = (OIDCAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
 
-		String idtoken = token.getIdToken().serialize();
+		String idToken = token.getIdToken().serialize();
 
-		return "redirect:https://accounts-test.cloudtrust.com.cn/session/end?id_token_hint="+idtoken+"&post_logout_redirect_uri=http://localhost:8080/j_spring_security_logout";
+		String sessionEndpoint = getEndSessionEndpoint(token);
+
+		String postLogoutRedirectUri = getPostLogoutRedirectUri(token);
+
+
+		return "redirect:" +
+				sessionEndpoint +
+				"?id_token_hint=" + idToken +
+				"&post_logout_redirect_uri=" +
+				postLogoutRedirectUri;
 	}
+
+	private String getPostLogoutRedirectUri(OIDCAuthenticationToken token) {
+		Set<String> postLogoutRedirectUris = filter.getClientConfigurationService()
+				.getClientConfiguration(
+						filter.getServerConfigurationService().getServerConfiguration(getIssuer(token.getIdToken())))
+				.getPostLogoutRedirectUris();
+
+		String postLogoutRedirectUri = "";
+		for (String uri : postLogoutRedirectUris) {
+			postLogoutRedirectUri = uri;
+		}
+		return postLogoutRedirectUri;
+	}
+
+	private String getEndSessionEndpoint(OIDCAuthenticationToken token) {
+		return filter.getServerConfigurationService()
+				.getServerConfiguration(getIssuer(token.getIdToken()))
+				.getEndSessionEndpoint();
+	}
+
+	private String getIssuer(JWT jwt) {
+		try {
+			return jwt.getJWTClaimsSet().getIssuer();
+		} catch (ParseException e) {
+			throw new RuntimeException();
+		}
+	}
+
 }
