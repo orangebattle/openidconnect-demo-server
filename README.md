@@ -5,16 +5,21 @@ Simple web application that demonstrates the use of the OpenID Connect client co
 
 clone and modified from https://github.com/mitreid-connect/simple-web-app
 
-to connect heroku server, git checkout branch master
-
 to connect our test server, git checkout branch test-server-open-id-provider
 
-to deploy it locally, run:
+__enviroment requirement:__
+
+_java 1.8_
+
+_maven 3.1.1+_
+
+__to deploy it locally, run:__
+
+_mvn clean install_
+
+_mvn jetty:run_
+
+then visit http://localhost:8080
 
 
-mvn clean install
 
-mvn jetty:run
-
-
-it will run on localhost:8080
